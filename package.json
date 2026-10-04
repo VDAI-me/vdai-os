@@ -28,7 +28,10 @@
     "verify:public": "node scripts/verify-public.mjs",
     "bridge:convert": "node scripts/problemos-bridge.mjs",
     "export:portable": "node scripts/export-portable.mjs",
-    "import:portable": "node scripts/import-portable.mjs"
+    "import:portable": "node scripts/import-portable.mjs",
+    "site:verify": "node scripts/verify-onboarding-site.mjs",
+    "site:build": "bash scripts/build-site.sh",
+    "site:test:browser": "node scripts/test-onboarding-browser.mjs"
   },
   "dependencies": {},
   "devDependencies": {
