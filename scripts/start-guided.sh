@@ -47,6 +47,8 @@ done
 say 'Open http://localhost:3000 in your browser. Create your local administrator. Return here and press Enter when done.' 'Откройте http://localhost:3000 в браузере. Создайте локального администратора. Вернитесь сюда и нажмите Enter.'
 read -r completed
 say 'Next, authorize VDAI for your LOCAL workspace in the OAuth page opened by Twenty. Check the address before approving.' 'Далее разрешите VDAI доступ к ЛОКАЛЬНОЙ ОС на странице OAuth от Twenty. Проверьте адрес перед подтверждением.'
-pnpm twenty remote:add --url http://localhost:3000
+if ! pnpm twenty remote:add --url http://localhost:3000; then
+  fail 'CLI authorization failed or was declined. Some server images may not expose the CLI OAuth client. Stop and verify the exact image/CLI authentication path with the owner; do not create a non-expiring Admin API key as a default workaround.' 'Авторизация CLI не прошла или отклонена. В некоторых серверных образах может отсутствовать CLI OAuth client. Остановитесь и проверьте точные версии и поддерживаемый путь с владельцем; бессрочный Admin API key не является стандартным обходом.'
+fi
 pnpm twenty apply
 say 'VDAI application applied. Open http://localhost:3000 and check that Projects and Tasks are visible. Shared team access still requires an invitation.' 'Приложение VDAI применено. Откройте http://localhost:3000 и проверьте проекты и задачи. Для общей команды ещё нужно приглашение.'

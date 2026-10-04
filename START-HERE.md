@@ -19,6 +19,8 @@ The launcher never installs prerequisites, asks for sudo, bypasses OS security o
 
 ### What you will see
 
+**Authorization compatibility:** a participant reported that the CLI OAuth client was unavailable in their server image. The exact image/CLI combination still needs independent verification. If OAuth fails, stop before applying the app and ask the owner to confirm the supported authentication method for that version. Do not create a non-expiring Admin API key as the default workaround, or share credentials in chat.
+
 The terminal shows progress. Once Twenty is ready, open **http://localhost:3000**, create your own local administrator, return to the terminal and press Enter. The Twenty CLI opens an OAuth authorization page; approve only your local workspace. The launcher then applies the VDAI application. Check that Projects and Tasks appear before calling the installation complete.
 
 Your local copy is separate from the VDAI team's database. To work together, ask Dmitrii for a named project invitation. Do not share your local administrator password or API keys.
@@ -26,6 +28,8 @@ Your local copy is separate from the VDAI team's database. To work together, ask
 Stop safely with `docker compose down` from the extracted folder. This preserves data. Rerunning the launcher uses the existing local configuration. Never add `--volumes` unless you intend to delete the database.
 
 ## Русский
+
+**Совместимость авторизации:** участник сообщил, что CLI OAuth client отсутствует в его серверном образе. Точная пара image/CLI ещё требует независимой проверки. Если OAuth не работает, остановитесь до применения приложения и согласуйте поддерживаемый путь для этой версии. Бессрочный Admin API key не является стандартным обходом; ключи не отправляются в чат.
 
 1. Распакуйте ZIP в новую папку. Не перемещайте запускной файл отдельно.
 2. Mac: **Start VDAI.command**. Windows: **Start VDAI.cmd**. Прочитайте и подтвердите запуск локальной установки.

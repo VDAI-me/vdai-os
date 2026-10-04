@@ -18,7 +18,7 @@ with tempfile.TemporaryDirectory() as d:
  report['format']=['preview does not mutate state','first commit 1–4','repeated numbers rejected','second commit 5–8','missing ProblemOS rejected','wrong recommendation rejected']
  b=p/'launcher';(b/'scripts').mkdir(parents=True);shutil.copy(r/'scripts/start-guided.sh',b/'scripts/start-guided.sh');(b/'scripts/bootstrap.sh').write_text('#!/bin/bash\necho bootstrap >> "$VDAI_TEST_LOG"\n')
  bin=p/'bin';bin.mkdir();log=p/'log'
- for name,body in {'node':'exit 0','pnpm':'echo "pnpm $*" >> "$VDAI_TEST_LOG"\nif [[ "$1" == --version ]]; then echo 11.19.0; fi','docker':'if [[ "$1" == info && "${VDAI_TEST_DOCKER:-}" == blocked ]]; then exit 1; fi\necho "docker $*" >> "$VDAI_TEST_LOG"','openssl':'echo synthetic','curl':'if [[ "$*" == *healthz* ]]; then exit 0; fi\nexit 1'}.items():
+ for name,body in {'node':'exit 0','pnpm':'echo "pnpm $*" >> "$VDAI_TEST_LOG"\nif [[ "${VDAI_TEST_OAUTH:-}" == fail && "$1 $2" == "twenty remote:add" ]]; then exit 1; fi\nif [[ "$1" == --version ]]; then echo 11.19.0; fi','docker':'if [[ "$1" == info && "${VDAI_TEST_DOCKER:-}" == blocked ]]; then exit 1; fi\necho "docker $*" >> "$VDAI_TEST_LOG"','openssl':'echo synthetic','curl':'if [[ "$*" == *healthz* ]]; then exit 0; fi\nexit 1'}.items():
   f=bin/name;f.write_text('#!/bin/bash\n'+body+'\n');f.chmod(0o755)
  env={**os.environ,'PATH':str(bin)+':/usr/bin:/bin','VDAI_TEST_LOG':str(log)}
  script=str(b/'scripts/start-guided.sh')
@@ -30,8 +30,11 @@ with tempfile.TemporaryDirectory() as d:
  assert 'bootstrap' not in log.read_text()
  assert run(input='y\n\n').returncode==0
  s=log.read_text();assert 'pnpm install --frozen-lockfile' in s and 'pnpm twenty remote:add --url http://localhost:3000' in s and 'pnpm twenty apply' in s
+ before=log.read_text().count('pnpm twenty apply')
+ assert run(input='y\n\n',more={'VDAI_TEST_OAUTH':'fail'}).returncode==1
+ assert log.read_text().count('pnpm twenty apply')==before
  assert run(input='y\n',more={'SERVER_URL':'https://example.invalid'}).returncode==1
- report['launcher']=['check-only does not install','stopped Docker is explained','decline makes no startup changes','mock full path checks consent/account/OAuth/apply order','custom remote endpoint rejected']
+ report['launcher']=['check-only does not install','stopped Docker is explained','decline makes no startup changes','mock full path checks consent/account/OAuth/apply order','custom remote endpoint rejected','OAuth failure stops before VDAI apply']
 for name in ['vdai-agent-starter.zip','vdai-os-starter.zip']:
  with zipfile.ZipFile(r/'site/assets'/name) as z:
   assert z.testzip() is None
