@@ -1,47 +1,34 @@
-# VDAI OS
+# VDAI · Club + OS
 
-VDAI OS is a project, task, collaboration and proof operating layer for VDAI Club. It is a separate Twenty application, not a fork of Twenty.
+**Единый вход / One entry: [os.vdai.me](https://os.vdai.me/)**
 
-## What is open
+Переключите RU / EN и начните с одного полезного вклада. Для первого разговора установка не нужна.
+Switch to RU / EN and start with one useful contribution. No installation is needed for the first conversation.
 
-- the VDAI application schema and eight access roles;
-- a pinned self-hosted Twenty stack;
-- synthetic demonstration data;
-- installation, backup, restore and portable export tools;
-- public safety and reproducibility checks.
+VDAI Club — люди, обучение и совместная работа. VDAI OS — открытый код для проектов, задач, обсуждений и проверяемых результатов.
+VDAI Club connects people, learning and shared work. VDAI OS keeps projects, tasks, discussion and reviewed results together.
 
-Client data, credentials, paid policies, company-specific connectors and Bank OS are not stored here.
+- [Идея / Idea](docs/IDEA.md)
+- [Стратегия / Strategy](docs/STRATEGY.md)
+- [Как присоединиться / How to join](docs/JOIN.md)
+- [Общий доступ / Shared access](docs/SHARED_ACCESS.md)
+- [Установка разработчику / Developer setup](SETUP.md)
 
-## Quick start
+## Сейчас / Available now
 
-Prerequisites: Git, Docker Desktop (macOS/Windows) or Docker Engine with Compose (Linux), and Node.js 24 with pnpm 11 for application development.
+Можно обсудить участие и выбрать первую задачу. Код открыт для изучения и разработки. Общий вход, приглашения и подключение внешнего участника ещё требуют проверки. Готового GitHub Release для скачивания нет.
+You can discuss participation and agree on a first task. Source is open for inspection and development. Shared login, invitations and external-participant connection still require verification. There is no downloadable GitHub Release yet.
+
+## Developers
+
+VDAI OS is an application layer on Twenty, not a Twenty fork. The public code includes project/task objects, roles, synthetic examples and installation/backup/export tools. A local instance does not join you to the shared team database.
 
 ```bash
-git clone https://github.com/vasilevdasfo/vdai-os.git
+git clone https://github.com/VDAI-me/vdai-os.git
 cd vdai-os
-./scripts/bootstrap.sh
 ```
 
-Open `http://localhost:3000`, create the first workspace administrator, then follow `SETUP.md` to connect and install the VDAI application.
+Read [SETUP.md](SETUP.md) before starting. Never publish `.env`, credentials, private client data or personal conversations.
+VDAI OS code is MIT licensed. Twenty is a separate upstream dependency with its own licensing. See [LICENSE](LICENSE) and dependency notices.
 
-## Security boundary
-
-Club level and project access are independent. Effective access is the lower of the member level and the named project grant. Secrets, payments, production, client data and external sends always require a separate permission and human gate.
-
-## Architecture
-
-```text
-VDAI UI and domain contract
-        ↓
-Twenty App API adapter
-        ↓
-Twenty upstream (replaceable CRM core)
-        ↓
-PostgreSQL + local object storage
-```
-
-VDAI uses portable identifiers in its own objects. It does not read or modify Twenty's internal database tables directly.
-
-## License
-
-VDAI OS application code is MIT licensed. Twenty is a separate upstream dependency with its own AGPL, Application Exception, MIT-package and commercial-file terms. See `NOTICE`.
+This corporate repository preserves the history of the original public `vasilevdasfo/vdai-os` repository. The participant entry remains **https://os.vdai.me/**.

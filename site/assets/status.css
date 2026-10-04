@@ -1,0 +1,37 @@
+/* Status-specific layout uses the current OS tokens. */
+.status-page .status-overview{max-width:1240px;margin:auto;padding-top:52px;padding-bottom:42px}
+.status-page h1{font-size:clamp(32px,4vw,54px);line-height:1.08;letter-spacing:-.045em;max-width:900px;margin:16px 0}
+.status-page .lead{font-size:19px;max-width:780px;margin-bottom:28px}
+.status-nav{margin-left:auto;margin-right:0}
+.status-paths{display:grid;grid-template-columns:1.15fr 1fr;gap:18px}
+.status-paths article{display:flex;flex-direction:column;align-items:flex-start;padding:26px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.status-paths .status-entry{border:2px solid var(--ink)}
+.status-page h2{font-size:23px;line-height:1.22;letter-spacing:-.025em;margin:12px 0}
+.status-paths p{margin:0 0 22px;color:#4e514a}
+.status-paths a{margin-top:auto}
+.status-label{font-size:11px;letter-spacing:.1em;font-weight:800;color:#5d6254}
+.status-access{padding:20px 24px;margin:24px 0;background:#e5e0d4;border-left:4px solid var(--ink);border-radius:0 10px 10px 0}
+.status-access h2{margin-top:0}.status-access p{max-width:900px;margin-bottom:0}
+.status-checks>div{padding:22px;border-color:var(--line)}
+.status-checks .good{color:#fffdf6}.status-checks .good h2{color:var(--acid)}
+.status-checks h2{margin-top:0}.status-checks ul{padding-left:22px;margin-bottom:0}.status-checks li{margin:8px 0}
+.status-note{font-size:13px;color:var(--muted);margin-top:24px}
+.status-page a:focus-visible{outline:3px solid #53620c;outline-offset:4px}
+.status-skip{position:absolute;left:16px;top:-60px;z-index:10;background:var(--ink);color:white;padding:8px 14px}.status-skip:focus{top:10px}
+@media(max-width:850px){.status-page .status-nav{display:flex;gap:12px}.status-paths{grid-template-columns:1fr}.status-page .lead{font-size:17px}.status-page header{gap:10px}.status-page .status-overview{padding-top:32px}}
+@media(max-width:540px){.status-page .status-nav{display:none}.status-paths article{padding:22px}.status-page .button{width:100%}.status-access{padding:18px}.status-page .language-switch{margin-left:auto}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* Same core skin as the accepted VDAI entry: club-structure.css. */
+body.status-page{--bg:#fff;--ink:#05070a;--muted:#50545a;--acid:#bf0909;--line:#b7b7b2;--dark:#05070a;--card:#f7f7f2;background:var(--bg);color:var(--ink);font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace}
+.status-page header{background:rgba(255,255,255,.96)}
+.status-page .brand b{background:var(--acid);color:#fff;border-radius:0}
+.status-page .eyebrow,.status-page .status-label{color:var(--acid)}
+.status-page h1{letter-spacing:-.055em}
+.status-page .status-paths article,.status-page .status-access,.status-page .status-checks>div,.status-page .button,.status-page .language-switch a{border-radius:0}
+.status-page .button{background:var(--acid);color:#fff}
+.status-page .status-access{background:var(--card)}
+.status-page .status-checks .good{background:var(--dark);border-color:var(--dark);color:#fff}
+.status-page .status-checks .good h2{color:#fff}
+.status-page .language-switch a[aria-current="page"]{background:var(--acid);color:#fff}
+.status-page a:focus-visible{outline-color:var(--acid)}

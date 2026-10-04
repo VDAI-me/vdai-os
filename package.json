@@ -6,10 +6,15 @@
     "node": ">=24.5.0 <25",
     "pnpm": ">=11.19.0 <12"
   },
-  "keywords": ["vdai", "twenty", "crm", "project-os"],
+  "keywords": [
+    "vdai",
+    "twenty",
+    "crm",
+    "project-os"
+  ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/vasilevdasfo/vdai-os.git"
+    "url": "https://github.com/VDAI-me/vdai-os.git"
   },
   "packageManager": "pnpm@11.19.0",
   "scripts": {
