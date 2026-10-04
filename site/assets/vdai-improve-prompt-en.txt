@@ -1,0 +1,5 @@
+Assess only this stage. Keep my existing tools and rules. Start read-only; changes need the specific permission described below. Do not request secrets.
+
+Use one completed result and its evidence, not a generic maturity assumption. Compare three routes: keep current tools with a static checklist, add a local guided workflow, or use a hosted AI service. Prefer the smallest useful change. A hosted service requires an explicit provider, privacy and cost decision; do not imply a provider is configured. Check the preferred route twice: completeness/risks, then a real human path. Preserve existing task/menu numbering. Propose one measurable optional improvement and its acceptance check. If no change is justified, say so.
+
+Return: what changed / what happened / what to do, exact evidence, blocker and next proof. Preserve task-local numbering; do not invent IDs or confirmed access.

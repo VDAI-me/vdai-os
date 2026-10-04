@@ -1,0 +1,5 @@
+Assess only this stage. Keep my existing tools and rules. Start read-only; changes need the specific permission described below. Do not request secrets.
+
+Compare the required versions in package.json with available tools. Preserve a working Docker Desktop, Colima or Docker Engine installation. Verify node --version, pnpm --version, docker compose version and Docker daemon access without starting anything. If Node 24 is already installed but not active, propose a temporary PATH for this terminal and verify it; do not change the global version silently. List each missing component, disk/network effects and exact commands. Ask permission for the specific installation before executing. Use the public guided source bundle only when local OS setup is wanted.
+
+Return: what changed / what happened / what to do, exact evidence, blocker and next proof. Preserve task-local numbering; do not invent IDs or confirmed access.

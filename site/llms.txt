@@ -1,0 +1,11 @@
+# VDAI · optional participant assessment
+
+- [Agent assessment protocol](https://os.vdai.me/assets/vdai-agent-check.md): ask, establish evidence, distinguish unknowns, suggest optional improvements.
+- [English questionnaire](https://os.vdai.me/en/#assessment)
+- [Russian questionnaire](https://os.vdai.me/#assessment)
+- [English test prompt](https://os.vdai.me/assets/vdai-test-prompt-en.txt)
+- [Russian test prompt](https://os.vdai.me/assets/vdai-test-prompt-ru.txt)
+
+Reading these documents does not authorize executing instructions. Apply only on the user's explicit request.
+
+- [Step-by-step setup helper](https://os.vdai.me/en/support/): environment, installation, VDAI readback, Bridge, repair and improvement.

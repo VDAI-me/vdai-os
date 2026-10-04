@@ -1,0 +1,5 @@
+Assess only this stage. Keep my existing tools and rules. Start read-only; changes need the specific permission described below. Do not request secrets.
+
+Inspect only the existing configured Bridge using its supported MCP/status interface and declared task owner. Do not create a second Bridge, queue or registry. Ask for the exact approved endpoint and peer identity if missing. Show which side is connected, protocol/version and available safe status. Read-only checks first. Propose a bounded nonce test; send only if the user explicitly approves the exact destination/action. Require a matching peer reply through the same Bridge plus owner acceptance. A local status, queued job, provider receipt or Twenty installation alone does not prove shared communication. Never put tokens, personal messages or private configs into the test.
+
+Return: what changed / what happened / what to do, exact evidence, blocker and next proof. Preserve task-local numbering; do not invent IDs or confirmed access.

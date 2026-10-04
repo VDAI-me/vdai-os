@@ -29,7 +29,7 @@ for(const width of [1440,390])for(const lang of ['ru','en'])for(const path of pa
   }));if(contrast.some(x=>x<4.5))throw Error('unreadable card contrast '+contrast);item.contrast=contrast;
   if(path===''){
    for(const entry of ['telegram','email'])if(!await page.locator('[data-entry="'+entry+'"]').count())throw Error('missing join channel '+entry);
-   await page.locator('a.button[href="#join"]').first().click();await page.locator('#join').scrollIntoViewIfNeeded();
+   await page.locator('.hero a[href="#join"]').first().click();await page.locator('#join').scrollIntoViewIfNeeded();
    await page.locator('.contact-fallback > summary').click();
    for(const entry of ['telegram','email'])if(!await page.locator('[data-entry="'+entry+'"]').isVisible())throw Error('entry not reachable '+entry);
    if(await page.locator('[data-carousel]').count()){const live=page.locator('[data-live]');await page.locator('[data-next]').click();if(!(await live.innerText()).includes(lang==='en'?'2 of 6':'2 из 6'))throw Error('next button');
@@ -45,11 +45,19 @@ for(const width of [1440,390])for(const lang of ['ru','en'])for(const path of pa
   const links=await page.locator('a[href]').evaluateAll(els=>els.map(el=>({href:el.getAttribute('href'),text:el.textContent.trim(),target:el.target,card:el.closest('.project-card')?.id})));
   for(let i=0;i<links.length;i++){
    const link=links[i],dest=new URL(link.href,url);
-   if(dest.origin===new URL(base).origin){
+   if(['http:','https:'].includes(dest.protocol)&&dest.origin===new URL(base).origin){
     // Every local anchor must resolve to actual content, not only HTTP 200.
     const key=dest.origin+dest.pathname+dest.search;
-    if(!documentCache.has(key))documentCache.set(key,JSON.parse(execFileSync('python3',['-c',`import urllib.request,json,sys
-with urllib.request.urlopen(sys.argv[1],timeout=25) as r: print(json.dumps({'status':r.status,'body':r.read().decode()}))`,key],{encoding:'utf8',maxBuffer:8000000})));
+    if(!documentCache.has(key))documentCache.set(key,JSON.parse(execFileSync('python3',['-c',`import urllib.request,json,sys,io,zipfile
+with urllib.request.urlopen(sys.argv[1],timeout=25) as r:
+ raw=r.read()
+ if sys.argv[1].split('?')[0].endswith('.zip'):
+  if raw[:4] != b'PK\\x03\\x04': raise ValueError('ZIP signature mismatch')
+  with zipfile.ZipFile(io.BytesIO(raw)) as z:
+   if z.testzip() is not None: raise ValueError('ZIP integrity failure')
+  body=''
+ else: body=raw.decode('utf-8')
+ print(json.dumps({'status':r.status,'body':body,'bytes':len(raw)}))`,key],{encoding:'utf8',maxBuffer:8000000})));
     const doc=documentCache.get(key);if(doc.status!==200)throw Error('broken local link '+link.href);const text=doc.body;
     if(dest.hash&&!text.includes('id="'+decodeURIComponent(dest.hash.slice(1))+'"'))throw Error('missing fragment '+link.href);
    }
@@ -74,7 +82,7 @@ for(const url of ['https://github.com/VDAI-me/vdai-os','https://api.github.com/r
   const data=JSON.parse(execFileSync('python3',['-c',`import urllib.request,json,re,sys
 u=sys.argv[1]
 with urllib.request.urlopen(u,timeout=25) as r:
- s=r.read().decode(); title=re.search(r'<title>(.*?)</title>',s,re.S)
+ s=r.read().decode('utf-8'); title=re.search(r'<title>(.*?)</title>',s,re.S)
  j={'url':u,'finalUrl':r.url,'status':r.status,'title':title.group(1) if title else None}
  if 'api.github.com' in u: j['releases']=len(json.loads(s))
  if '#contact' in u: j['contactAnchor']='id="contact"' in s

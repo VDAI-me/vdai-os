@@ -1,0 +1,5 @@
+Assess only this stage. Keep my existing tools and rules. Start read-only; changes need the specific permission described below. Do not request secrets.
+
+Read the selected checkout commit and actual non-secret source/build markers. Check Docker compose services and the local Twenty health endpoint. A healthy Twenty instance does not prove VDAI is applied. Ask the owner to create the local administrator and authorize the exact local workspace in OAuth. Then run only approved VDAI apply commands. Read back the expected VDAI project/task objects through available supported tools in the same workspace and record evidence. If you cannot read objects, mark application verification unknown; do not replace it with HTTP 200. Do not request passwords or API keys in chat.
+
+Return: what changed / what happened / what to do, exact evidence, blocker and next proof. Preserve task-local numbering; do not invent IDs or confirmed access.

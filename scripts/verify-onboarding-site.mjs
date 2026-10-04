@@ -22,6 +22,7 @@ for(const rel of ruPages){
     }
     if(!html.includes('class="language-switch"')||!html.includes(`lang="${lang}" hreflang="${lang}" href="${lang==='ru'?path:'/en'+path}" aria-current="page"`))languageErrors.push(`active language ${file}`);
     for(const match of html.matchAll(/(?:href|src)="([^"]+)"/g)){
+      if(/[{}]/.test(match[1]))languageErrors.push(`unresolved link template ${file}: ${match[1]}`);
       const href=match[1].replace(/^https:\/\/os\.vdai\.me(?=\/)/,'');if(!href.startsWith('/')&&!href.startsWith('#'))continue;
       const [url,fragment]=href.split('#');
       const localPath=url?(url.endsWith('/')?`site${url}index.html`:`site${url}`):file;
@@ -50,5 +51,5 @@ for(const locale of ['', 'en/']){
 if(entryErrors.length){console.error(entryErrors.join('\n'));process.exit(1)}
 console.log('ENTRY_REGRESSION_PASS contact channels and no fictitious release download');
 
-for(const locale of ['', 'en/']){const html=readFileSync(resolve(root,`site/${locale}index.html`),'utf8');if(html.includes('vdai.me/en#contact')||html.includes('data-entry="club"'))throw Error('duplicate public entry route');if((html.match(/class="button" href="#join"/g)||[]).length!==1)throw Error('one primary join action required');}
-console.log('UNIFIED_ENTRY_PASS one primary route and corporate repository');
+for(const locale of ['', 'en/']){const html=readFileSync(resolve(root,`site/${locale}index.html`),'utf8');if(html.includes('vdai.me/en#contact')||html.includes('data-entry="club"'))throw Error('duplicate public entry route');if((html.match(/data-entry="assessment"/g)||[]).length!==1)throw Error('one primary assessment action required');if(!html.includes('id="setup"')||!html.includes('data-copy="starter-prompt"'))throw Error('starter instructions missing');}
+console.log('UNIFIED_ENTRY_PASS optional assessment, work format and local OS routes');

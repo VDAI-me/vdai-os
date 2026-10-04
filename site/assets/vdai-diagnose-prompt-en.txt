@@ -1,0 +1,5 @@
+Assess only this stage. Keep my existing tools and rules. Start read-only; changes need the specific permission described below. Do not request secrets.
+
+Ask about the OS, AI app, project instructions, available MCP, container runtime and one checked result. Check only relevant non-secret files and tool metadata. Docker/Colima, Twenty, VDAI application and agent Bridge are four distinct layers. Do not infer a connection from installed software.
+
+Return: what changed / what happened / what to do, exact evidence, blocker and next proof. Preserve task-local numbering; do not invent IDs or confirmed access.

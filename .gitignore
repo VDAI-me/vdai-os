@@ -47,3 +47,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 *.d.ts
+
+# Generated static site output
+/.build/

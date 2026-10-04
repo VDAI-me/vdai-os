@@ -14,10 +14,26 @@ VDAI Club connects people, learning and shared work. VDAI OS keeps projects, tas
 - [Общий доступ / Shared access](docs/SHARED_ACCESS.md)
 - [Установка разработчику / Developer setup](SETUP.md)
 
+## Optional setup check / Диагностика по желанию
+
+- [Questionnaire and copy/paste test prompt · EN](https://os.vdai.me/en/#assessment)
+- [Опросник и тестовый промпт · RU](https://os.vdai.me/#assessment)
+- [Agent-readable assessment protocol](site/assets/vdai-agent-check.md)
+- [English test prompt](site/assets/vdai-test-prompt-en.txt) / [Русский промпт](site/assets/vdai-test-prompt-ru.txt)
+- [Download AI work-format starter](site/assets/vdai-agent-starter.zip) / [Source instructions](onboarding/agent-starter/AGENTS.md)
+- [Download guided local OS source bundle](site/assets/vdai-os-starter.zip) / [Setup requirements](START-HERE.md)
+- [Step-by-step setup helper · EN](https://os.vdai.me/en/support/) / [RU](https://os.vdai.me/support/)
+- [Result, lessons, naming and participation rules](docs/WORKING.md)
+
+Keep your working tools. The kit is optional. The five-area 0–3 rubric is a working self-assessment, not a certification or Club role; unknown is not zero. Native sidebar automation is not installed by this kit.
+Сохраните работающие инструменты. Комплект — по желанию. Шкала 0–3 по пяти направлениям — рабочая самооценка, не сертификация или роль в Club; неизвестное — не ноль. Комплект не устанавливает автоматизацию sidebar.
+
+The source bundle checks prerequisites and guides setup; it is not a signed installer. A fresh full OS install has not been verified for this version. Do not disable OS security or send credentials. Build download bundles with `python3 scripts/build-starter.py`.
+
 ## Сейчас / Available now
 
-Можно обсудить участие и выбрать первую задачу. Код открыт для изучения и разработки. Общий вход, приглашения и подключение внешнего участника ещё требуют проверки. Готового GitHub Release для скачивания нет.
-You can discuss participation and agree on a first task. Source is open for inspection and development. Shared login, invitations and external-participant connection still require verification. There is no downloadable GitHub Release yet.
+Можно обсудить участие и выбрать первую задачу. Код открыт для изучения и разработки. Общий вход, приглашения и подключение внешнего участника ещё требуют проверки. Подписанного установщика и GitHub Release пока нет; доступен комплект исходников с мастером запуска.
+You can discuss participation and agree on a first task. Source is open for inspection and development. Shared login, invitations and external-participant connection still require verification. There is no signed installer or GitHub Release yet; a guided source bundle is available.
 
 ## Developers
 
