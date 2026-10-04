@@ -22,7 +22,7 @@ for(const rel of ruPages){
     }
     if(!html.includes('class="language-switch"')||!html.includes(`lang="${lang}" hreflang="${lang}" href="${lang==='ru'?path:'/en'+path}" aria-current="page"`))languageErrors.push(`active language ${file}`);
     for(const match of html.matchAll(/(?:href|src)="([^"]+)"/g)){
-      const href=match[1];if(!href.startsWith('/')&&!href.startsWith('#'))continue;
+      const href=match[1].replace(/^https:\/\/os\.vdai\.me(?=\/)/,'');if(!href.startsWith('/')&&!href.startsWith('#'))continue;
       const [url,fragment]=href.split('#');
       const localPath=url?(url.endsWith('/')?`site${url}index.html`:`site${url}`):file;
       let target;

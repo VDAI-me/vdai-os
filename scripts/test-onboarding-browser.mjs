@@ -7,7 +7,8 @@ import {resolve} from 'node:path';
 import {execFileSync} from 'node:child_process';
 const require=createRequire(import.meta.url),{chromium}=require(process.argv[4]||'playwright');
 const base=process.argv[2]||'http://127.0.0.1:8777',out=resolve(process.argv[3]||'work/browser-proof');mkdirSync(out,{recursive:true});
-const paths=['','docs/','status/','support/','download/','security/','changelog/','install/mac/','install/windows/','install/server/'];
+const documentCache=new Map();
+const paths=process.env.VDAI_TEST_PATHS?JSON.parse(process.env.VDAI_TEST_PATHS):['','docs/','status/','support/','download/','security/','changelog/','install/mac/','install/windows/','install/server/'];
 const browser=await chromium.launch({channel:'chrome',headless:true});
 const report={base,mode:'isolated headless, anonymous; no form submission, messages or account creation',pages:[],failures:[],external:[],controls:0,links:0};
 const context=await browser.newContext({reducedMotion:'reduce'}),page=await context.newPage();
@@ -46,7 +47,10 @@ for(const width of [1440,390])for(const lang of ['ru','en'])for(const path of pa
    const link=links[i],dest=new URL(link.href,url);
    if(dest.origin===new URL(base).origin){
     // Every local anchor must resolve to actual content, not only HTTP 200.
-    const r=await context.request.get(dest.href);if(r.status()!==200)throw Error('broken local link '+link.href);const text=await r.text();
+    const key=dest.origin+dest.pathname+dest.search;
+    if(!documentCache.has(key))documentCache.set(key,JSON.parse(execFileSync('python3',['-c',`import urllib.request,json,sys
+with urllib.request.urlopen(sys.argv[1],timeout=25) as r: print(json.dumps({'status':r.status,'body':r.read().decode()}))`,key],{encoding:'utf8',maxBuffer:8000000})));
+    const doc=documentCache.get(key);if(doc.status!==200)throw Error('broken local link '+link.href);const text=doc.body;
     if(dest.hash&&!text.includes('id="'+decodeURIComponent(dest.hash.slice(1))+'"'))throw Error('missing fragment '+link.href);
    }
    // Click the rendered link while intercepting navigation to avoid sending or invoking apps.
